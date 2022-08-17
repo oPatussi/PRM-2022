@@ -3,7 +3,7 @@ import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, U
 @Entity()
 export class Category extends BaseEntity {
     @PrimaryGeneratedColumn()
-    ide: number;
+    id: number;
 
     @Column({nullable: false, length: 50})
     name: string;
