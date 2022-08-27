@@ -81,9 +81,14 @@ class CategoryController{
             }
 
             //Atualiza com os novos dados
-            const category = await Category.update(found.id, request.body);
+            await Category.update(found.id, request.body);
 
-            return response.json(category);
+            const novo = request.body;
+
+            //altera o id para o request recebido
+            novo.id = found.id;
+
+            return response.json(novo);
         } catch (e) {
             const error = e as TypeORMError;
             return response.status(500).json({message: error.message});
