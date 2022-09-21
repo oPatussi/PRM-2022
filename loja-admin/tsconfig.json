@@ -14,7 +14,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@typesCustom": ["C:\\Users\\User\\Documents\\VisualCode\\PRM-2022\\@types\\index.ts"]
+    },                                      
+    "rootDirs": ["C:\\Users\\User\\Documents\\VisualCode\\PRM-2022\\@types"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
