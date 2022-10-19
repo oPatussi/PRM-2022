@@ -1,6 +1,8 @@
 import {Router} from 'express';
 import BrandController from './controler/BrandController';
 import CategoryController from './controler/CategoryController';
+import CustomerController from './controler/CustomerController';
+import OrderController from './controler/OrderController';
 import ProductController from './controler/ProductController';
 
 //instaciar o router do express
@@ -33,8 +35,8 @@ routes.route('/categories/:id')
 
 //rota Product
 routes.route('/products')
-    .get(CategoryController.index)
-    .post(CategoryController.create);
+    .get(ProductController.index)
+    .post(ProductController.create);
 
 routes.route('/products/:id')
     .get(ProductController.show)
@@ -42,5 +44,25 @@ routes.route('/products/:id')
     .delete(ProductController.remove)
 ;
 
+//rota Customer
+routes.route('/customer')
+    .get(CustomerController.index)
+    .post(CustomerController.create);
+
+routes.route('/customer/:id')
+    .get(CustomerController.show)
+    .put(CustomerController.update)
+    .delete(CustomerController.remove)
+;
+
+//rota Order
+routes.route('/orders')
+    .get(OrderController.index)
+    .post(OrderController.create);
+
+routes.route('/orders/:id')
+    .get(OrderController.show)
+    .put(OrderController.cancel)
+;
 
 export default routes;

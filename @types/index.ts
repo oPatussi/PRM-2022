@@ -9,3 +9,8 @@ export interface IUser{
     email: string
     password?: string;
 }
+
+export interface IBrand {
+    id?: number;
+    name: string;
+}
