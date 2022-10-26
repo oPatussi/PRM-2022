@@ -1,0 +1,41 @@
+  
+    .container-fluid {
+
+        .carousel {
+            z-index: 0;
+            height: 550px;
+            overflow: hidden;
+
+            .carousel-item {
+                
+                img {
+                    margin-top: -25px;
+                }
+            }
+
+            .carousel-caption {
+                bottom: 25rem;
+                text-align: left;
+
+                h3 {
+                    font-weight: 500;            
+                    color: #000;
+                    margin-top: 0;
+                    letter-spacing: 2px;
+                }
+                p {
+                    font-weight: 300;
+                    font-size: 18px;
+                    color: #999;
+                }
+                button {
+                    text-transform: uppercase;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #fff;
+                    transition: 0.3s ease;
+                    border-radius: 0;
+                }
+            }
+        }
+    }

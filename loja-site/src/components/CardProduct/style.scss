@@ -1,0 +1,55 @@
+.card-product {
+    width: 100%;
+    box-shadow: 0 0 5px rgb(33 33 33 / 20%);
+
+    .card-title {
+        text-align: center;
+        font-weight: 300;
+        padding: 0 10px;
+
+        a {
+            font-size: 16px;
+            color: #303030;
+            text-decoration: none;
+
+            &:hover {
+                color: #ff4200;
+            }
+        }
+    }
+    p {
+        text-align: center;
+        width: 100%;
+    }
+    .price-max {
+        font-size: 12px;
+        font-weight: 300;
+        color: #aaa;
+        min-height: 20px;            
+        text-decoration: line-through;
+        margin-bottom: 4px;
+    }
+    .price-pix {
+        color: #02b302;
+        font-size: 22px;
+        font-weight: 400;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed #efefef;
+
+        span {
+            font-size: 12px;
+            font-weight: 400;
+            margin-left: 5px;
+        }
+    }
+    .price {
+        color: #707070;
+        font-size: 10px;
+        font-weight: 600;
+        margin-bottom: 0;
+
+        span {
+            font-weight: 300;
+        }
+    }
+}

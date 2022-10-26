@@ -1,0 +1,9 @@
+$theme-colors: (
+    "danger": #ff4200
+);
+
+@import "bootstrap/scss/bootstrap";
+
+.container-fluid {
+    max-width: 1600px!important;
+}
