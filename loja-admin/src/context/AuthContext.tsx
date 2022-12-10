@@ -1,34 +1,36 @@
-import { createContext, useState, ReactNode } from "react";
-import {IUser, ICredential} from '@typesCustom';
+import { createContext, ReactNode } from "react";
+import {ICredential, IUser} from '@typesCustom';
+import { useState } from "react";
 import { signInAdmin } from "../services/server";
 import { useEffect } from "react";
 
 
 type AuthContextType = {
     user: IUser | undefined;
-    signIn(credential: ICredential):void; 
-    signOut(): void;   
+    signIn(credential: ICredential): void;
+    signOut(): void;
 }
 export const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-type AuthContextProviderProps = {
+type AuthContextProviderProp = {
     children: ReactNode;
 }
-export function AuthContextProvider(props:AuthContextProviderProps){
+export function AuthContextProvider(props: AuthContextProviderProp) {
+    const [user, setUser] = useState<IUser>();
 
-    const [user, setUser] = useState<IUser>()
-
-    //Chaves da local Storage
+    //Chaves da Local Storage
     const keyUser = '@PRM:user'
 
-    useEffect(() =>{
+    useEffect(() => {
 
+        //Leio o usuario da Local Storage
         const storageUser = localStorage.getItem(keyUser);
 
-        if(storageUser){
+        if (storageUser) {
             setUser(JSON.parse(storageUser));
         }
-    }, [])
+
+    }, []);
 
     async function signIn(credential: ICredential) {
         try {
@@ -47,13 +49,12 @@ export function AuthContextProvider(props:AuthContextProviderProps){
         }
     }
 
-    function signOut(){
+    function signOut() {
         localStorage.removeItem(keyUser);
         setUser({} as IUser);
     }
 
-
-    return(
+    return (
         <AuthContext.Provider value={{user, signIn, signOut}}>
             {props.children}
         </AuthContext.Provider>

@@ -1,13 +1,14 @@
-import express from "express";
-import cors from "cors";
-import { AppDataSource } from "./data-source"
-import routes from "./routes";
+import { AppDataSource } from './data-source';
+import express from 'express';
+import cors from 'cors';
+import routes from './routes';
 import dotenv from 'dotenv';
+import { connect, consumeCustomer } from './services/amqp';
 
-//Carrega as variáveis de ambiente
+//Carrego variaveis de ambiente
 dotenv.config();
 
-//Instacia uma aplicação express
+//Instancio uma aplicação express
 const app = express();
 
 //Determina a porta de execução
@@ -18,17 +19,34 @@ app.use(cors());
 app.use(express.json());
 
 //Importa as rotas
-app.use('/backoffice',routes)
+app.use('/backoffice', routes);
 
+//Conecta no RabbitMQ
+connect()
+    .then(() => {
+        console.log('Conectado ao RabbitMQ e pronto para consumi-lo');
 
-//Tenta conexão, caso erro, mostra log
+        //Carrego os consumidores
+        consumeCustomer();
+
+    })
+    .catch(error => {
+        console.log('Não foi possível conectar ao RabbitMQ');
+    });
+
+//Tento conectar ao banco e, se não conseguir, mostro o erro.
 AppDataSource.initialize()
-    .then(() =>{
+    .then(() => {
+
+        //Inicio a aplicação
         app.listen(PORT, () => {
             console.log(`Service backoffice running in port ${PORT}`);
         })
 
     })
     .catch(error => {
-        console.log('Ops, não conectei no banco de dados', error);
+        console.log('Ops! Ocorreu um erro.');
+        console.error(error);
     });
+
+

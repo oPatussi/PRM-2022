@@ -89,8 +89,8 @@ export function BrandPage() {
         setBrand( data );
         setOpenPanel(true);
     }
-    function handleDelete(data: IBrand) {console.log(data)
-        deleteBrand(data)
+    function handleDelete(data: IBrand) {
+        deleteBrand(Number(data.id))
             .then(() => {
                 const filtered = brands.filter(item => (item.id !== data.id));
             

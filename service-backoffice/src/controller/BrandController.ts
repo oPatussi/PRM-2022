@@ -2,92 +2,92 @@ import { Request, Response } from "express";
 import { TypeORMError } from "typeorm";
 import { Brand } from "../entity/Brand";
 
-class BrandController{
 
-    public async index(request: Request, response: Response){
+class BrandController {
+
+    public async index(request: Request, response: Response) {
         try {
-            //Busca todos os registros
+            //Buscar TODOS os registros do banco
             const brands = await Brand.find();
 
-            //Retorno da lista
+            //Retorno a lista
             return response.json(brands);
-
         } catch (e) {
             const error = e as TypeORMError;
             return response.status(500).json({message: error.message});
         }
     }
 
-    public async create(request: Request, response: Response){
+    public async create(request: Request, response: Response) {
         try {
-            //Salva no banco a entidade que que foi requisitada
-            const brands = await Brand.save(request.body);
+            //Salvo no banco a entidade que veio na requisição
+            const brand = await Brand.save(request.body);
 
-            //Retorno da lista
-            return response.status(201).json(brands);
-
+            //Retorno a entidade inserida
+            return response.status(201).json(brand);
         } catch (e) {
             const error = e as TypeORMError;
             return response.status(500).json({message: error.message});
         }
     }
 
-    public async show(request: Request, response: Response){
+    public async show(request: Request, response: Response) {
         try {
-            //Pega o ID que foi enviado por request param
+            //Pego o ID que foi enviado por request param
             const {id} = request.params;
 
-            //Verifica se recebeu o parametro ID
-            if(!id){
-                return response.status(400).json({message: 
-                'Parametro ID não informado'})
+            //Verifico se veio o parametro ID
+            if (!id) {
+                return response.status(400).json({message: 'Parâmetro ID não informado'})
             }
 
-            //Busco a entity no banco pelo id
+            //Busco a entity no banco pelo ID
             const found = await Brand.findOneBy({
                 id: Number(id)
             });
 
-
             //Verifico se encontrou a brand
-            if(!found){
+            if (!found) {
                 return response.status(404).json({message: 'Recurso não encontrado'})
             }
 
+            //Retorno a entidade encontrada
             return response.json(found);
-
         } catch (e) {
             const error = e as TypeORMError;
             return response.status(500).json({message: error.message});
         }
     }
 
-    
-    public async update(request: Request, response: Response){
+    public async update(request: Request, response: Response) {
         try {
-            //Pega o ID que foi enviado por request param
+            //Pego o ID que foi enviado por request param
             const {id} = request.params;
 
-            //Verifica se recebeu o parametro ID
-            if(!id){
-                return response.status(400).json({message: 'Parametro ID não informado'})
+            //Verifico se veio o parametro ID
+            if (!id) {
+                return response.status(400).json({message: 'Parâmetro ID não informado'})
             }
- 
-            const found = await Brand.findOneBy({id: Number(id)});
+
+            //Busco a entity no banco pelo ID
+            const found = await Brand.findOneBy({
+                id: Number(id)
+            });
 
             //Verifico se encontrou a brand
-            if(!found){
+            if (!found) {
                 return response.status(404).json({message: 'Recurso não encontrado'})
             }
 
-            //Atualiza com os novos dados
+            //Atualizo com os nos dados
             await Brand.update(found.id, request.body);
 
             const novo = request.body;
 
-            //altera o id para o request recebido
+            //Altero o ID para o que veio no request
             novo.id = found.id;
 
+            //Retorno a entidade encontrada
             return response.json(novo);
         } catch (e) {
             const error = e as TypeORMError;
@@ -95,35 +95,31 @@ class BrandController{
         }
     }
 
-
-    public async remove(request: Request, response: Response){
+    public async remove(request: Request, response: Response) {
         try {
-            //Pega o ID que foi enviado por request param
+            //Pego o ID que foi enviado por request param
             const {id} = request.params;
 
-            //Verifica se recebeu o parametro ID
-            if(!id){
-                return response.status(400).json({message: 
-                'Parametro ID não informado'})
+            //Verifico se veio o parametro ID
+            if (!id) {
+                return response.status(400).json({message: 'Parâmetro ID não informado'})
             }
 
-            //Busco a entity no banco pelo id
+            //Busco a entity no banco pelo ID
             const found = await Brand.findOneBy({
                 id: Number(id)
             });
 
-
             //Verifico se encontrou a brand
-            if(!found){
+            if (!found) {
                 return response.status(404).json({message: 'Recurso não encontrado'})
             }
 
             //Removo o registro baseado no ID
             await found.remove();
 
-            //Retorno satus 2-4 que é sem retorno
+            //Retorno status 204 que é sem retorno
             return response.status(204).json();
-
         } catch (e) {
             const error = e as TypeORMError;
             return response.status(500).json({message: error.message});

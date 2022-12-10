@@ -1,26 +1,26 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import routes from "./routes";
+import routes from './routes';
 
-//Carrega as variáveis de ambiente da app
+//Carrego as variaveis de ambiente da aplicação
 dotenv.config();
 
-//Instacia uma aplicação express
+//Instancio uma aplicação express
 const app = express();
 
 //Determina a porta de execução
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3302;
 
 //Middleware
 app.use(cors());
 app.use(express.json());
 
 //Importa as rotas
-app.use('/account',routes)
+app.use('/account', routes);
 
 
-//Tenta conexão, caso erro, mostra log
+//Inicio a aplicação
 app.listen(PORT, () => {
-    console.log(`Running in port ${PORT}`);
-})
+    console.log(`Service Account running in port ${PORT}`);
+});

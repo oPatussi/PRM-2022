@@ -3,33 +3,32 @@ import { Brand } from "./Brand";
 import { Category } from "./Category";
 
 @Entity()
-export class Product extends BaseEntity{
+export class Product extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn() 
     id: number;
 
-    @Column({nullable: false,length:50})
+    @Column({nullable: false, length: 50})
     name: string;
-    
-    @Column('text',{nullable: true})
+
+    @Column('text', {nullable: true})
     description: string;
-    
-    @Column({nullable: false})
+
+    @Column('decimal', {nullable: false, precision: 10, scale: 2})
     price: number;
-    
-    @Column({nullable: false,length:1})
+
+    @Column({nullable: false, length: 1})
     active: string;
 
-    @ManyToOne(() => Category, {eager: true,nullable: false})
+    @ManyToOne(() => Category, {eager: true, nullable: false})
     category: Category;
 
-    @ManyToOne(() => Brand, {eager: true,nullable: true})
+    @ManyToOne(() => Brand, {eager: true, nullable: true})
     brand: Brand;
 
     @CreateDateColumn()
     createdAt: Date;
     
     @UpdateDateColumn()
-    uptadeAt: Date;
-
+    updatedAt: Date;
 }

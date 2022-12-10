@@ -1,28 +1,23 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Customer } from "./Customer";
-import { Order } from "./Order";
-import { Product } from "./Product";
+import {Order} from "./Order";
 
 @Entity()
-export class OrderItem extends BaseEntity {
-    @PrimaryGeneratedColumn() 
+export class Sale extends BaseEntity {
+    @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => Order)
+    @ManyToOne(() => Order, {eager: true, nullable: false})
     order: Order;
 
-    @ManyToOne(() => Product, {eager: true, nullable: false})
-    product: Product;
-
     @Column({nullable: false})
-    amount: number;
+    saleDate: Date;
 
     @Column('decimal', {nullable: false, precision: 10, scale: 2})
-    value: number;
+    total: number;
 
     @CreateDateColumn()
     createdAt: Date;
-    
+
     @UpdateDateColumn()
     updatedAt: Date;
 }

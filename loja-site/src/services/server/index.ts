@@ -82,4 +82,31 @@ const createUserCustomer = async (user: IUser, customer: ICustomer) => {
     }
 }
 
-export { getCategories, getProducts, getProductsByCategory, getProductById, signIn, createUserCustomer };
+//CUSTOMER
+const getCustomerByUID = async (uid: string) => {
+    const result = await api.get(`${_BACKOFFICE}/customers/uid/${uid}`);
+    const customer: ICustomer = result.data;
+
+    return new Promise<ICustomer>(resolve => {
+        resolve(customer);
+    });
+}
+
+
+//ORDER
+const createOrder = async (cart: IOrder) => {
+    try {
+        const result = await api.post(`${_BACKOFFICE}/orders`, cart);
+        return new Promise<IOrder>(resolve => {
+                resolve(result.data as IOrder);
+        });
+    } catch (e) {
+        const error: AxiosError = e as AxiosError;
+        return new Promise<IOrder>((resolve, reject) => {
+                reject({status: error.response?.status, message: error.response?.data});
+        });
+    }
+}
+
+export { getCategories, getProducts, getProductsByCategory, getProductById, signIn, createUserCustomer,
+    getCustomerByUID, createOrder };

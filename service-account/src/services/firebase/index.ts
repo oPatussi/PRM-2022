@@ -35,6 +35,7 @@ const signInAdmin = (email: string, password: string) => (signInWithEmailAndPass
 
 //Usuarios
 const listUsers = () => admin.auth().listUsers(1000);
+
 const createUser = (user: IUser) => (admin.auth().createUser({
   email: user.email,
   emailVerified: true,
@@ -42,8 +43,22 @@ const createUser = (user: IUser) => (admin.auth().createUser({
   displayName: user.name,
   disabled: false
 }));
+
+//Usuario Clientes
+const createUserCustomer = (user: IUser) => {
+
+    //Aqui, estou retornando a função createUser, mas deve ser implentado 
+    //diferente pela equipe, adicionando o retorno como Promise
+    return createUser(user);
+
+    //TO-DO: Adicionar claim (customer: true) aqui
+} 
+
 const getUser = (uid: string) => admin.auth().getUser(uid);
 const updateUser = (uid: string, data: any) => admin.auth().updateUser(uid, data);
 const deleteUser = (uid: string) => admin.auth().deleteUser(uid);
 
-export { FirebaseError, signInAdmin, listUsers, createUser, getUser, updateUser, deleteUser }
+export { FirebaseError, signInAdmin, 
+  listUsers, createUser, getUser, updateUser, deleteUser,
+  createUserCustomer
+ }

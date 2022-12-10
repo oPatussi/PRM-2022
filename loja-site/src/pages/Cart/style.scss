@@ -1,0 +1,223 @@
+#cart-page {
+
+    .bg-light {
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .cart-page-container {
+        display: flex;
+        flex-direction: column;        
+
+        .cart-empty {
+            padding-bottom: 32px;
+            
+            .card-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            img {
+                padding: 100px 0 30px;
+            }
+
+            .h6 {
+                font-size: 17px;
+                font-weight: 400;
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .card-text {
+                margin: 0 auto;
+                width: 60%;
+                text-align: center;
+                font-size: 13px;
+                font-weight: 300;
+                line-height: 20px;
+                color: #8a8484;
+            }
+            a {
+                margin-top: 48px;
+                padding: 8px 32px;
+                border: 1px solid #ff4200;
+                color: #ff4200;
+                text-decoration: none;
+
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+
+        .card {
+            margin: 20px 120px;
+            box-shadow: 0 0 5px rgb(33 33 33 / 20%);
+
+            .card-footer {
+                display: flex;
+                justify-content: end;
+                padding: 16px;
+
+                button {
+                    color: #fff;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .cart-empty {
+            margin: 40px auto;
+            width: 40%;
+        }
+
+        .product-row {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 1px dashed #e6e6e6;
+            gap: 20px;
+            padding: 20px 0;
+
+            p {
+                font-size: 12px;
+                margin: 0;
+            }
+
+            .product-description,
+            .product-fields {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .product-description p {
+                margin-left: 16px;
+                font-size: 16px;
+            }
+
+            .product-detail {
+                display: flex;
+                flex-direction: row;
+
+                .product-fields {
+                    width: 200px;
+                    gap: 8px;
+
+                    input {
+                        width: 80px;
+                    }
+
+                    button {
+                        color: #303030;
+
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                        }
+
+                        &:hover {
+                            color: #ff4200
+                        }
+                    }
+                }
+
+                .product-prices {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    .price-pix {
+                        color: #02b302;
+                        font-size: 18px;
+                        margin-bottom: 08px;
+                        ;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .frete,
+    .forma-pagto {
+        padding: 20px 0;
+        border-bottom: 1px dashed #e6e6e6;
+
+        p {
+            font-weight: 500;
+        }
+    }
+
+    .frete-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .input-group {
+            width: 260px;
+        }
+
+        button {
+            text-decoration: none;
+            color: #303030;
+            &:hover {
+                color: #ff4200;
+            }
+        }
+
+        .frete-valor {
+            font-size: 16px;
+            margin: 0;
+        }
+
+    }
+
+    .forma-pagto {
+        .forma-pagto-content {
+            margin-left: 32px;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+    }
+
+    .total {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding-top: 24px;
+
+        .price-total {
+            font-size: 24px;
+            font-weight: 500;
+
+            p {
+                text-align: center;
+                font-size: 12px;
+                color: #303030;
+                font-weight: 300;
+            }
+        }
+    }
+
+    .continuar {
+        text-align: center;
+
+        a {
+            color: #303030;
+            text-decoration: none;
+
+            &:hover {
+                color: #ff4200;
+            }
+        }
+    }
+
+}

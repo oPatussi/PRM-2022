@@ -4,7 +4,13 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { useAuth } from '../../hook/useAuth';
 
 import { BrandPage } from '../Brand';
+import { CategoryPage } from '../Category';
+import { CustomerPage } from '../Customer';
 import { LoginPage } from '../Login';
+import { OrderPage } from '../Order';
+import { ProductPage } from '../Product';
+import { SalePage } from '../Sale';
+import { UserPage } from '../User';
 
 const navLinkGroups: INavLinkGroup[] = [
   {
@@ -114,7 +120,13 @@ export function HomePage() {
               onRenderGroupHeader={onRenderGroupHeader as IRenderFunction<IRenderGroupHeaderProps>} />
 
             <Routes>
+            <Route path="categories" element={<CategoryPage />} />
               <Route path="brands" element={<BrandPage />} />
+              <Route path="products" element={<ProductPage />} />
+              <Route path="orders" element={<OrderPage />} />
+              <Route path="sales" element={<SalePage />} />
+              <Route path="customers" element={<CustomerPage />} />
+              <Route path="users" element={<UserPage />} />
             </Routes>
           </Stack>
         </Stack>

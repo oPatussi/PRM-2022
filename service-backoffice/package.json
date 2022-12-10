@@ -7,6 +7,7 @@
     "dev": "ts-node-dev src/server.ts --transpile-only --ignore-watch node_modules --respawn"
   },
   "dependencies": {
+    "amqplib": "^0.10.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
@@ -15,6 +16,7 @@
     "typeorm": "^0.3.7"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.10.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^18.6.5",

@@ -12,6 +12,7 @@ import { SignUpPage } from './pages/SignUp';
 
 //CSS GLobal
 import './assets/css/global.scss';
+import { CartPage } from './pages/Cart';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <CartContextProvider>
         <Routes>
           <Route path="" element={<HomePage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/products/:id" element={<ProductPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />

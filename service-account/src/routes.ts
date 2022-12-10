@@ -1,14 +1,12 @@
-import {Router} from 'express';
-import AuthController from './controller/AuthController';
+import { Router } from 'express';
 import AccountController from './controller/AccountController';
+import AuthController from './controller/AuthController';
 
-//instaciar o router do express
+//Instancio o reouter do express
 const routes = Router();
 
-
-//rota Brands
+//Rotas de Autenticação
 routes.post('/admin/signin', AuthController.signInAdmin);
-
 routes.post('/loja/signin', AuthController.signInAdmin); //TO-DO: Mudar para um método próprio
 
 //Rotas da Loja Admin
@@ -23,6 +21,6 @@ routes.route('/admin/users/:uid')
 
 //Rotas da Loja
 routes.route('/loja/userCustomers')
-    .post(AccountController.createUser);
+    .post(AccountController.createUserLikeCustomer);
 
 export default routes;
